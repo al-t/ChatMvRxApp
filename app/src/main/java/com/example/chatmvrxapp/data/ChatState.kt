@@ -3,24 +3,9 @@ package com.example.chatmvrxapp.data
 import com.airbnb.mvrx.MvRxState
 
 data class ChatState(
-    val headerState: HeaderState = HeaderState("Чад кутежа", 3),
-    val feedState: FeedState = FeedState(
-        listOf(
-            Message(
-                true,
-                "Привет!"
-            ),
-            Message(
-                false,
-                "Привет!"
-            ),
-            Message(
-                true,
-                "Как дела?"
-            )
-        )
-    ),
-    val messageState: MessageState = MessageState("Отлич")
+    val headerState: HeaderState,
+    val feedState: FeedState,
+    val messageState: MessageState
 ) : MvRxState {
 
     data class HeaderState(
