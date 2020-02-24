@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-kapt"
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.example.chatmvrxapp"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation "androidx.lifecycle:lifecycle-extensions:$androidXLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidXLifecycleVersion"
+    implementation "androidx.fragment:fragment-ktx:1.2.2"
+
+    implementation "io.reactivex.rxjava2:rxjava:2.2.17"
+
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    implementation "com.squareup.inject:assisted-inject-annotations-dagger2:$assistedInjectDaggerVersion"
+    kapt "com.squareup.inject:assisted-inject-processor-dagger2:$assistedInjectDaggerVersion"
+
+    implementation 'com.airbnb.android:mvrx:1.3.0'
+
+    implementation "com.airbnb.android:epoxy:$epoxyVersion"
+    annotationProcessor "com.airbnb.android:epoxy-processor:$epoxyVersion"
+
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+}
