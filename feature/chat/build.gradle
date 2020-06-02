@@ -1,17 +1,12 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: "kotlin-kapt"
+apply plugin: 'kotlin-android-extensions'
 
 android {
-    defaultConfig {
-        applicationId "com.example.chatmvrxapp"
-    }
-
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -20,26 +15,25 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(":core:di")
     implementation project(":core:ui")
-    implementation project(":feature:chat")
-    implementation project(":router")
 
     implementation deps.kotlinStdLibJdk8
+    implementation deps.fragmentKtx
+    implementation deps.constraintLayout
 
     implementation deps.appcompat
     implementation deps.coreKtx
-    implementation deps.constraintLayout
     implementation deps.androidXLifecycleExtensions
     implementation deps.androidXLifecycleViewModelKtx
-    implementation deps.fragmentKtx
+    implementation deps.mvrx
 
     implementation deps.rxJava
-
-    implementation deps.mvrx
+    implementation deps.timber
 
     implementation deps.dagger
     kapt deps.daggerCompiler
 
-    implementation deps.timber
+    implementation deps.assistedInjectAnnotationsDagger
+    implementation deps.recyclerView
+    kapt deps.assistedInjectProcessorDagger
 }

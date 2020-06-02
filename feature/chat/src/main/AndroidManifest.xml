@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.chatmvrxapp.chat">
+
+    <application>
+
+        <activity android:name="com.example.chatmvrxapp.feature.chat.presentation.ChatActivity" />
+    </application>
+</manifest>

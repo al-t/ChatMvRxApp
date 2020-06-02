@@ -1,2 +1,9 @@
-include ':app'
-rootProject.name='ChatMvRxApp'
+include(
+        ':app',
+        ':core:di',
+        ':core:ui',
+        ':router',
+        ':feature:chat',
+        ':feature'
+)
+
