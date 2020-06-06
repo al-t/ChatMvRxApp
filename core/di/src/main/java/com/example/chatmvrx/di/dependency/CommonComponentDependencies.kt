@@ -10,8 +10,6 @@ import java.lang.ref.WeakReference
  * Предпологается, что данная dependency может быть уничтожена в любой момент времени,
  * т.к. реализацию базируется на [WeakReference]
  *
- * @author Коваль Ростислав
- *
  * @see [ApplicationComponentDependencies]
  * @see [CacheableComponentDependencies]
  * @see [WeakReference]

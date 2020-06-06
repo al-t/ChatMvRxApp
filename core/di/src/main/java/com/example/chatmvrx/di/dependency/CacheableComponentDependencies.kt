@@ -5,8 +5,6 @@ package com.example.chatmvrx.di.dependency
  * которые должны быть инициализованы до момента, пока кто-то вручную их не освободит
  * с помощью [ComponentDependenciesHolder.releaseCachableComponent]
  *
- * @author Коваль Ростислав
- *
  * @see [ApplicationComponentDependencies]
  * @see [CommonComponentDependencies]
  */

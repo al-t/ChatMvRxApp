@@ -1,10 +1,9 @@
 package com.example.chatmvrxapp.di
 
+import com.example.chatmvrx.di.dependency.ApplicationComponentDependencies
 import com.example.chatmvrxapp.presentation.BaseViewModel
-import dagger.Module
 
-@Module
-interface ViewModelDependencies {
+interface ViewModelDependencies : ApplicationComponentDependencies {
 
     fun viewModelFactories(): Map<Class<out BaseViewModel<*>>, AssistedViewModelFactory<*, *>>
 }

@@ -29,6 +29,6 @@ internal class ChatMessageFragment : BaseMvRxFragment(R.layout.fragment_chat_mes
     }
 
     override fun invalidate() = withState(viewModel) { state ->
-        messageInput!!.setText(state.messageState.message)
+        messageInput!!.setText(state.editMessageState.message)
     }
 }

@@ -2,12 +2,12 @@ package com.example.chatmvrxapp.feature.chat.presentation
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.chatmvrxapp.chat.R
-import com.example.chatmvrxapp.di.ViewModelDependencies
 import com.example.chatmvrxapp.feature.chat.di.ChatComponent
-import com.example.chatmvrxapp.presentation.BaseActivity
 
-class ChatActivity : BaseActivity(R.layout.activity_chat) {
+class ChatActivity : AppCompatActivity(R.layout.activity_chat) {
 
     companion object {
 
@@ -18,7 +18,14 @@ class ChatActivity : BaseActivity(R.layout.activity_chat) {
         }
     }
 
-    override fun injectDependencies(): ViewModelDependencies {
-        return ChatComponent.initAndGet()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        ChatComponent.initAndGet(this).inject(this)
+        super.onCreate(savedInstanceState)
     }
+
+    override fun onDestroy() {
+        if (isFinishing) ChatComponent.release(this)
+        super.onDestroy()
+    }
+
 }

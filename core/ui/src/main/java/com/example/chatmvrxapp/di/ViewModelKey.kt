@@ -4,7 +4,7 @@ import dagger.MapKey
 import kotlin.reflect.KClass
 
 /**
- * A [MapKey] for populating a map of ViewModels and their factories.
+ * Ключ [MapKey] для заполнения карты Вьюмоделей и соответствующих им фабрик
  */
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.FUNCTION)

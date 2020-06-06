@@ -53,8 +53,6 @@ import java.lang.ref.WeakReference
  * }
  * ```
  *
- * @author Коваль Ростислав
- *
  * @see [CommonComponentDependencies]
  * @see [CacheableComponentDependencies]
  * @see [ApplicationComponentDependencies]

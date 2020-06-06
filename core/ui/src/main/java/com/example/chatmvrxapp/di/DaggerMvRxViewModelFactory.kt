@@ -1,24 +1,23 @@
 package com.example.chatmvrxapp.di
 
-import com.airbnb.mvrx.ActivityViewModelContext
 import com.airbnb.mvrx.MvRxState
 import com.airbnb.mvrx.MvRxViewModelFactory
 import com.airbnb.mvrx.ViewModelContext
-import com.example.chatmvrxapp.presentation.BaseActivity
+import com.example.chatmvrx.di.dependency.ComponentDependenciesHolder
 import com.example.chatmvrxapp.presentation.BaseViewModel
 
 /**
- * A [MvRxViewModelFactory] which makes it easy to create instances of a ViewModel
- * using its AssistedInject Factory. This class should be implemented by the companion object
- * of every ViewModel which uses AssistedInject.
+ * Фабрика вьюмоделей [MvRxViewModelFactory] для создания инстансов вьюмоделей при использовании
+ * AssistedInject. Этот класс должен быть реализован в companion object каждой вьмодели, которая
+ * использует AssistedInject (то есть, в которую нужно инжектить какие-то зависимости).
  *
- * @param viewModelClass The [Class] of the ViewModel being requested for creation
+ * @param viewModelClass класс вьюмодели
  *
- * This class accesses the map of [AssistedViewModelFactory]s from [AppComponent] and uses it to
- * retrieve the requested ViewModel's factory class. It then creates an instance of this ViewModel
- * using the retrieved factory and returns it.
+ * Этот класс достаёт нужную фабрику [AssistedViewModelFactory] из карты фабрик, сгенерённой
+ * Даггером.
+ * Затем он создаёт инстанс вьмодели с помощью этой фабрики и возвращает её.
  *
- * Example:
+ * Пример:
  *
  * class MyViewModel @AssistedInject constructor(...): BaseViewModel<MyState>(...) {
  *
@@ -43,9 +42,9 @@ abstract class DaggerMvRxViewModelFactory<VM : BaseViewModel<S>, S : MvRxState>(
         viewModelContext: ViewModelContext,
         state: S
     ): VM {
-        val baseActivity = (viewModelContext as ActivityViewModelContext).activity as BaseActivity
-        val viewModelFactoryMap = baseActivity.viewModelFactories
-        val viewModelFactory = viewModelFactoryMap[viewModelClass]
+        val viewModelFactory = ComponentDependenciesHolder
+            .getApplicationDependency<ViewModelDependencies>(viewModelContext.app())
+            .viewModelFactories()[viewModelClass]
 
         @Suppress("UNCHECKED_CAST")
         val castedViewModelFactory = viewModelFactory as? AssistedViewModelFactory<VM, S>

@@ -3,19 +3,13 @@ apply plugin: 'kotlin-android'
 apply plugin: "kotlin-kapt"
 apply plugin: 'kotlin-android-extensions'
 
-android {
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-}
+android {}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(":core:ui")
+    implementation project(":core:di")
 
     implementation deps.kotlinStdLibJdk8
     implementation deps.fragmentKtx

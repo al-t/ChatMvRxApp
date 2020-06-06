@@ -1,14 +1,14 @@
 package com.example.chatmvrxapp.presentation
 
 import com.airbnb.mvrx.BaseMvRxViewModel
-import com.airbnb.mvrx.BuildConfig
 import com.airbnb.mvrx.MvRxState
+import com.example.chatmvrxapp.ui.BuildConfig
 
 /**
- * Base class for ViewModels.
+ * Базовая Вьюмодель.
+ * Устанавливает debug mode в [BaseMvRxViewModel] в соответствии с [BuildConfig.DEBUG]
  *
- * This class sets the 'Debug' mode in a [BaseMvRxViewModel] to the corresponding parameter
- * in the [BuildConfig] class.
+ * @param initialState начальное состояние
  */
 abstract class BaseViewModel<S : MvRxState>(initialState: S) :
     BaseMvRxViewModel<S>(initialState, BuildConfig.DEBUG)

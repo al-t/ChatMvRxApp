@@ -12,7 +12,7 @@ class FeedAdapter : RecyclerView.Adapter<FeedAdapter.MessageViewHolder>() {
 
     private companion object {
         const val TYPE_INCOMING = 0
-        const val TYPE_OUTCOMING = 1
+        const val TYPE_OUTGOING = 1
     }
 
     private val messages = mutableListOf<ChatState.Message>()
@@ -20,7 +20,7 @@ class FeedAdapter : RecyclerView.Adapter<FeedAdapter.MessageViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
         return if (viewType == TYPE_INCOMING) IncomingMessage(
             parent
-        ) else OutcomingMessage(
+        ) else OutgoingMessage(
             parent
         )
     }
@@ -30,7 +30,7 @@ class FeedAdapter : RecyclerView.Adapter<FeedAdapter.MessageViewHolder>() {
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (messages[position].isIncoming) TYPE_INCOMING else TYPE_OUTCOMING
+        return if (messages[position].isIncoming) TYPE_INCOMING else TYPE_OUTGOING
     }
 
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
@@ -57,7 +57,7 @@ class FeedAdapter : RecyclerView.Adapter<FeedAdapter.MessageViewHolder>() {
         }
     }
 
-    private class OutcomingMessage(parent: ViewGroup) :
+    private class OutgoingMessage(parent: ViewGroup) :
         MessageViewHolder(parent, R.layout.item_outcoming_message) {
         override fun showMessage(message: ChatState.Message) {
             itemView.findViewById<TextView>(R.id.messageTextView).text = message.text

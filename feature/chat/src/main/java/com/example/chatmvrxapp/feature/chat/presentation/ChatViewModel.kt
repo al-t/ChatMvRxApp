@@ -19,7 +19,7 @@ class ChatViewModel @AssistedInject constructor(
                 .also {
                     it.add(ChatState.Message(false, message))
                 }),
-            messageState = ChatState.MessageState("")
+            editMessageState = ChatState.EditMessageState("")
         )
     }
 
@@ -56,7 +56,7 @@ class ChatViewModel @AssistedInject constructor(
                         )
                     )
                 ),
-                messageState = ChatState.MessageState("Отлич")
+                editMessageState = ChatState.EditMessageState("Отлич")
             )
         }
     }
