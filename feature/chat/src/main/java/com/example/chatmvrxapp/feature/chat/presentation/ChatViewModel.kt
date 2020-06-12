@@ -1,16 +1,16 @@
 package com.example.chatmvrxapp.feature.chat.presentation
 
+import com.airbnb.mvrx.MvRxViewModelFactory
 import com.airbnb.mvrx.ViewModelContext
-import com.example.chatmvrxapp.di.AssistedViewModelFactory
-import com.example.chatmvrxapp.di.DaggerMvRxViewModelFactory
 import com.example.chatmvrxapp.feature.chat.data.ChatState
 import com.example.chatmvrxapp.presentation.BaseViewModel
-import com.squareup.inject.assisted.Assisted
-import com.squareup.inject.assisted.AssistedInject
+import com.example.chatmvrxapp.router.Router
+import org.koin.android.ext.android.inject
 
-class ChatViewModel @AssistedInject constructor(
-    @Assisted state: ChatState
-) : BaseViewModel<ChatState>(state) {
+class ChatViewModel(
+    initialState: ChatState,
+    private val router: Router
+) : BaseViewModel<ChatState>(initialState) {
 
     fun sendMessage(message: String) = setState {
         copy(
@@ -23,16 +23,13 @@ class ChatViewModel @AssistedInject constructor(
         )
     }
 
-    @AssistedInject.Factory
-    interface Factory :
-        AssistedViewModelFactory<ChatViewModel, ChatState> {
-        override fun create(state: ChatState): ChatViewModel
-    }
-
     companion object :
-        DaggerMvRxViewModelFactory<ChatViewModel, ChatState>(
-            ChatViewModel::class.java
-        ) {
+        MvRxViewModelFactory<ChatViewModel, ChatState> {
+
+        override fun create(viewModelContext: ViewModelContext, state: ChatState): ChatViewModel {
+            val router: Router by viewModelContext.activity.inject()
+            return ChatViewModel(state, router)
+        }
 
         override fun initialState(viewModelContext: ViewModelContext): ChatState? {
             return ChatState(

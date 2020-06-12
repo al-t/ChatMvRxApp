@@ -20,10 +20,11 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(":core:di")
+    implementation project(":router")
     implementation project(":core:ui")
     implementation project(":feature:chat")
-    implementation project(":router")
+
+    implementation deps.koin
 
     implementation deps.kotlinStdLibJdk8
 
@@ -37,9 +38,6 @@ dependencies {
     implementation deps.rxJava
 
     implementation deps.mvrx
-
-    implementation deps.dagger
-    kapt deps.daggerCompiler
 
     implementation deps.timber
 }

@@ -7,13 +7,10 @@ android {}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(":core:di")
     implementation deps.kotlinStdLibJdk8
 
     implementation deps.appcompat
     implementation deps.coreKtx
     implementation deps.mvrx
     implementation deps.androidXLifecycleViewModelKtx
-
-    implementation deps.dagger
 }

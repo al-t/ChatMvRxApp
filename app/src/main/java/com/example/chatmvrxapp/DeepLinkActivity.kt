@@ -1,20 +1,12 @@
 package com.example.chatmvrxapp
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.chatmvrxapp.di.AppComponent
 import com.example.chatmvrxapp.router.Router
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
 class DeepLinkActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var router: Router
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        AppComponent.initAndGet().inject(this)
-        super.onCreate(savedInstanceState)
-    }
+    private val router: Router by inject()
 
     override fun onStart() {
         super.onStart()

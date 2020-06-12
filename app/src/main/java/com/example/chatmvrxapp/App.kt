@@ -1,19 +1,25 @@
 package com.example.chatmvrxapp
 
 import android.app.Application
-import com.example.chatmvrx.di.dependency.ComponentDependenciesHolder
-import com.example.chatmvrx.di.dependency.HasComponentDependencies
-import com.example.chatmvrxapp.di.AppComponent
+import com.example.chatmvrxapp.router.Router
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
+import org.koin.dsl.module
 
-class App : Application(), HasComponentDependencies<AppComponent> {
-
-    override val componentDependenciesHolder = ComponentDependenciesHolder()
-
-    override lateinit var appComponent: AppComponent
+class App : Application() {
 
     override fun onCreate() {
-        appComponent = AppComponent.initAndGet()
-        appComponent.inject(this)
         super.onCreate()
+        startKoin {
+            androidContext(this@App)
+            modules(routerModule)
+        }
     }
+
+}
+
+private val routerModule = module {
+
+    factory<Router> { RouterImpl() }
+
 }
